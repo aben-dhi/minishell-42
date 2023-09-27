@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htouil <htouil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:49:40 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/26 18:39:24 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/09/26 22:44:10 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+//Libraries:
 # include <stdio.h> // remove
 # include <unistd.h>
 # include <stdlib.h>
@@ -26,13 +27,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define CMD 0
-# define REDIR 1
-# define PIPE 2
-# define SEMICOLON 3
-# define VAR 4
-# define STR 5
-
+//Text colors:
 # define BRED "\e[1;31m"
 # define RED "\033[0;31m"
 # define YELLOW "\033[1;33m"
@@ -45,6 +40,14 @@
 # define CYAN "\e[1;36m"
 # define WHITE "\e[0;37m"
 # define GREY "\e[1;30m"
+
+//Command's token types:
+# define CMD 0
+# define REDIR 1
+# define PIPE 2
+# define SEMICOLON 3
+# define VAR 4
+# define STR 5
 
 typedef struct s_token
 {
@@ -67,7 +70,7 @@ int		ft_isalnum(int c);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 
-//parser
+//Parser
 int		ft_parse(char *line);
 t_token	*ft_tokenizer(char *str);
 t_token	*ft_redir(char *str, int *i, t_token *token);

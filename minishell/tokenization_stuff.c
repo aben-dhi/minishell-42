@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization_stuff.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htouil <htouil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:58:05 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/26 18:10:07 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/09/26 22:41:31 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_token	*ft_redir(char *str, int *i, t_token *token)
 	j = *i;
 	if (str[*i] == '>' && str[*i + 1] == '>')
 		*i += 2;
-	else if (str[*i] == '<' && str[*i] == '<')
+	else if (str[*i] == '<' && str[*i + 1] == '<')
 		*i += 2;
 	else
 		*i += 1;
