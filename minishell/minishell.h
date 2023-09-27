@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htouil <htouil@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:49:40 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/27 22:17:03 by htouil           ###   ########.fr       */
+/*   Updated: 2023/09/27 22:19:17 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define REDIR 1
 # define PIPE 2
 // # define SEMICOLON 3
-# define VAR 4
-# define STR 5
-# define SQUOTE 6
-# define DQUOTE 7
+# define VAR 3
+# define STR 4
+# define SQUOTE 5
+# define DQUOTE 6
 
 # define BRED "\e[1;31m"
 # define RED "\033[0;31m"
