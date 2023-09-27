@@ -6,7 +6,7 @@
 /*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:49:40 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/26 18:39:24 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:22:22 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@
 # define CMD 0
 # define REDIR 1
 # define PIPE 2
-# define SEMICOLON 3
+// # define SEMICOLON 3
 # define VAR 4
 # define STR 5
+# define SQUOTE 6
+# define DQUOTE 7
 
 # define BRED "\e[1;31m"
 # define RED "\033[0;31m"
@@ -72,9 +74,11 @@ int		ft_parse(char *line);
 t_token	*ft_tokenizer(char *str);
 t_token	*ft_redir(char *str, int *i, t_token *token);
 t_token	*ft_pipe(char *str, int *i, t_token *token);
-t_token	*ft_semicolon(char *str, int *i, t_token *token);
+// t_token	*ft_semicolon(char *str, int *i, t_token *token);
 t_token	*ft_var(char *str, int *i, t_token *token);
 t_token	*ft_str(char *str, int *i, t_token *token);
 t_token	*ft_lstlast(t_token *lst);
+t_token	*ft_squote(char *str, int *i, t_token *token);
+t_token	*ft_dquote(char *str, int *i, t_token *token);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:46:48 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/25 19:59:08 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:25:02 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ t_token	*ft_tokenizer(char *str)
 			token = ft_redir(str, &i, token);
 		else if (str[i] == '|')
 			token = ft_pipe(str, &i, token);
-		else if (str[i] == ';')
-			token = ft_semicolon(str, &i, token);
+		// else if (str[i] == ';')
+		// 	token = ft_semicolon(str, &i, token);
 		else if (str[i] == '$')
 			token = ft_var(str, &i, token);
+		else if (str[i] == '\'')
+			token = ft_squote(str, &i, token);
+		else if (str[i] == '\"')
+			token = ft_str(str, &i, token);
 		else
 			token = ft_str(str, &i, token);
 		if (j == i)
