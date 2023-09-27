@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htouil <htouil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:49:40 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/27 20:22:22 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/09/27 22:17:03 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <stdio.h> // remove
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
