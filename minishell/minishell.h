@@ -6,7 +6,7 @@
 /*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:49:40 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/27 22:21:29 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:26:35 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define STR 4
 # define SQUOTE 5
 # define DQUOTE 6
+# define LPAREN 7
+# define RPAREN 8
 
 # define BRED "\e[1;31m"
 # define RED "\033[0;31m"
@@ -74,11 +76,11 @@ int		ft_parse(char *line);
 t_token	*ft_tokenizer(char *str);
 t_token	*ft_redir(char *str, int *i, t_token *token);
 t_token	*ft_pipe(char *str, int *i, t_token *token);
-// t_token	*ft_semicolon(char *str, int *i, t_token *token);
 t_token	*ft_var(char *str, int *i, t_token *token);
 t_token	*ft_str(char *str, int *i, t_token *token);
 t_token	*ft_lstlast(t_token *lst);
 t_token	*ft_squote(char *str, int *i, t_token *token);
 t_token	*ft_dquote(char *str, int *i, t_token *token);
+int		ft_check_syntax(char *line);
 
 #endif
