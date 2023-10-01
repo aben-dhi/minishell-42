@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htouil <htouil@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 17:58:31 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/26 18:15:59 by aben-dhi         ###   ########.fr       */
+/*   Created: 2023/09/29 23:51:54 by aben-dhi          #+#    #+#             */
+/*   Updated: 2023/09/30 22:42:48 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_lstadd_back(t_token **lst, t_token *new)
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_token	*last;
+	int	i;
 
-	if (lst)
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		if (*lst)
-		{
-			last = ft_lstlast(*lst);
-			last->next = new;
-		}
-		else
-			*lst = new;
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
 	}
+	return (0);
 }

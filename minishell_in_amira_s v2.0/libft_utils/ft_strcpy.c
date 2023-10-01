@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 16:49:31 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/09/29 16:46:36 by aben-dhi         ###   ########.fr       */
+/*   Created: 2023/09/29 21:02:14 by aben-dhi          #+#    #+#             */
+/*   Updated: 2023/09/29 21:06:11 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-//we need to give the main as a reference the envp to use it in the expand function.
-int	main(void)
+char	*ft_strcpy(char *src)
 {
-	char	*line;
+	int		i;
+	char	*dest;
 
-	// envp = getenv(envp);
-	while (1)
+	i = 0;
+	dest = NULL;
+	while (src[i])
 	{
-		line = readline(GREY"minishell $> "CX);
-		if (!line)
-			break ;
-		else if (line[0] != '\0')
-			add_history(line);
-		ft_parse(line);
-		free(line);
+		dest[i] = src[i];
+		i++;
 	}
-	return (0);
+	dest[i] = '\0';
+	return (dest);
 }

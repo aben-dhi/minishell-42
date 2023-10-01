@@ -1,7 +1,9 @@
 NAME	= minishell
 
-SRCS	= minishell.c parsing.c tokenization_stuff.c libft_utils/ft_substr.c libft_utils/ft_lstadd_back.c libft_utils/ft_isalnum.c libft_utils/ft_strchr.c libft_utils/ft_strlen.c \
-			libft_utils/ft_lstlast.c
+SRCS	= minishell.c parsing.c syntax.c built_ins.c \
+			libft_utils/ft_substr.c libft_utils/ft_lstadd_back.c libft_utils/ft_isalnum.c libft_utils/ft_strchr.c \
+			libft_utils/ft_strlen.c libft_utils/ft_lstlast.c libft_utils/ft_split.c libft_utils/ft_strcpy.c libft_utils/ft_strcmp.c \
+			tok_lex.c
 
 OBJS	= $(SRCS:.c=.o)
 
