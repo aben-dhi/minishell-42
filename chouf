@@ -1,0 +1,54 @@
+the export thingy:
+
+export x="idk man anything"
+  at7at liya hadik fl env right?
+  moraha we can execute l x
+kifach? using $x
+hadik supposedly atexecuti l x
+swel li bghiti so in this case khasha takhod the first argument as a cmd
+w moraha atkhrej hadi wait I'll show you the output of bash
+
+```
+bash-3.2$ export x="idk man something"
+bash-3.2$ $x
+bash: idk: command not found
+bash-3.2$ 
+```
+
+SO the first word t9rat ka command.. another example:
+export dyal "ls -la"
+  l output dyalha:
+bash-3.2$ export x="ls -la"
+bash-3.2$ $x
+total 304
+drwxr-xr-x  29 aben-dhi  candidates    986 Oct  6 18:37 .
+drwxr-xr-x  11 aben-dhi  candidates    374 Oct  6 19:19 ..
+drwxr-xr-x  13 aben-dhi  candidates    442 Oct  6 16:48 .git
+-rw-r--r--   1 aben-dhi  candidates    852 Oct  6 16:48 Makefile
+-rw-r--r--   1 aben-dhi  candidates    366 Oct  6 17:55 SOME_SHITTY_NOTES
+-rw-r--r--   1 aben-dhi  candidates   8969 Oct  6 16:48 built_ins.c
+-rw-r--r--   1 aben-dhi  candidates   7900 Oct  6 18:37 built_ins.o
+-rw-r--r--   1 aben-dhi  candidates   3128 Oct  6 16:48 check_args.c
+-rw-r--r--   1 aben-dhi  candidates   2452 Oct  6 18:37 check_args.o
+-rw-r--r--   1 aben-dhi  candidates   4321 Oct  6 16:48 expand.c
+-rw-r--r--   1 aben-dhi  candidates   2128 Oct  6 18:37 expand.o
+drwxr-xr-x  28 aben-dhi  candidates    952 Oct  6 18:37 libft_utils
+-rwxr-xr-x   1 aben-dhi  candidates  27924 Oct  6 18:37 minishell
+-rw-r--r--   1 aben-dhi  candidates   1461 Oct  6 16:48 minishell.c
+-rw-r--r--   1 aben-dhi  candidates   4162 Oct  6 16:48 minishell.h
+-rw-r--r--   1 aben-dhi  candidates   1028 Oct  6 18:37 minishell.o
+-rw-r--r--   1 aben-dhi  candidates   6236 Oct  6 17:42 parsing.c
+-rw-r--r--   1 aben-dhi  candidates   3172 Oct  6 18:37 parsing.o
+-rw-r--r--   1 aben-dhi  candidates   1376 Oct  6 16:48 redir_fcts.c
+-rw-r--r--   1 aben-dhi  candidates   1076 Oct  6 18:37 redir_fcts.o
+-rw-r--r--   1 aben-dhi  candidates   1421 Oct  6 16:48 redir_type.c
+-rw-r--r--   1 aben-dhi  candidates   1096 Oct  6 18:37 redir_type.o
+-rw-r--r--   1 aben-dhi  candidates   4693 Oct  6 17:19 syntax.c
+-rw-r--r--   1 aben-dhi  candidates    964 Oct  6 18:37 syntax.o
+-rw-r--r--   1 aben-dhi  candidates   3797 Oct  6 18:31 tok_lex.c
+-rw-r--r--   1 aben-dhi  candidates   4212 Oct  6 18:37 tok_lex.o
+drwxr-xr-x   4 aben-dhi  candidates    136 Oct  6 16:48 useless_pos
+-rw-r--r--   1 aben-dhi  candidates   1263 Oct  6 16:48 utils.c
+-rw-r--r--   1 aben-dhi  candidates   1012 Oct  6 18:37 utils.o
+
+  see???
