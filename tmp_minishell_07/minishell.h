@@ -6,7 +6,7 @@
 /*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 16:49:40 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/10/09 17:28:50 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:46:47 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ typedef struct s_env
 	struct s_env	*prev;
 }	t_env;
 
+typedef struct s_ghk
+{
+	t_token	*token;
+	t_env	*env;
+	int		exit_status;
+}	t_ghk;
+
 //libft_utils:
 void	ft_lstadd_back1(t_token **lst, t_token *new);
 void	ft_lstadd_back2(t_env **lst, t_env *new);
@@ -88,6 +95,9 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 char	*ft_strtrim(char *s1, char *set);
 void	ft_putstr_fd(char *s, int fd);
+char 	*ft_strjoin_realloc(char *s1, const char *s2, size_t *s1_len);
+char    *ft_realloc(char *str, int size);
+char	*ft_strlcpy(char *dest, char *src, int size);
 
 //parser:
 // void	ft_assign_type(t_token **token);

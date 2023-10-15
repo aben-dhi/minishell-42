@@ -6,7 +6,7 @@
 /*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 12:48:31 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/10/04 19:40:37 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:44:42 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,24 @@ char	*ft_strjoin(char *str1, char *str2)
 // 	new[i] = '\0';
 // 	return (new);
 // }
+
+char *ft_strjoin_realloc(char *s1, const char *s2, size_t *s1_len) {
+    if (s1 == NULL) {
+        return strdup(s2);
+    }
+
+    size_t s1_len_orig = *s1_len;
+    size_t s2_len = strlen(s2);
+    *s1_len += s2_len;
+
+    s1 = ft_realloc(s1, *s1_len + 1);
+    if (s1 == NULL) {
+        // Handle memory allocation error
+        return NULL;
+    }
+
+    memcpy(s1 + s1_len_orig, s2, s2_len);
+    s1[*s1_len] = '\0';
+
+    return s1;
+}

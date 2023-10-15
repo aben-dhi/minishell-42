@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aben-dhi <aben-dhi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:47:39 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/10/07 18:05:06 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/10/16 00:21:39 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ char	*expand(char *str, t_env *env, t_token *token)
 				free(token->value);
 				token->value = ft_strdup(value);
 			}
-			// else
-			// 	token->value = ft_strjoin(token->value, "");
+			else
+				token->value = ft_strdup("");
 			free(new);
 			j = i;
 		}
@@ -77,6 +77,8 @@ char	*expand(char *str, t_env *env, t_token *token)
 					free(token->value);
 					token->value = ft_strdup(value);
 				}
+				else
+					token->value = ft_strdup("");
 				i++;
 			}
 		}
@@ -85,102 +87,151 @@ char	*expand(char *str, t_env *env, t_token *token)
 	return (token->value);
 }
 
-// char *expand(char *str, t_env *env, t_token *token)
-// {
-// 	char *new;
-// 	char *tmp;
-// 	int i;
-// 	int j;
+// char *expand_in_dq(char *str, t_env *env) {
+//     char *expanded = ft_strdup(""); // Initialize to an empty string
+//     size_t len = 0;
+//     size_t i = 0;
+// 	size_t k = 0;
 
-// 	i = 0;
-// 	j = 0;
-// 	tmp = NULL;
-// 	while (str[i])
-// 	{
-// 		if (str[i] == '$' && str[i + 1] == '{')
-// 		{
-// 			i += 2; // Skip '$' and '{'
-// 			j = i;
-// 			while (str[i] && str[i] != '}')
-// 				i++;
-// 			if (str[i] == '}')
-// 			{
-// 				new = ft_substr(str, j, i - j);
-// 				char *value = get_env(env, new);
-// 				free(new);
+//     while (str[i]) {
+//         if (str[i] == '$' && ft_isalnum(str[i + 1])) {
+//             i++;
+//             size_t j = i;
+//             while (str[i] && (ft_isalnum(str[i]) || str[i] == '_')) {
+//                 i++;
+//             }
 
-// 				if (value)
-// 				{
-// 					tmp = ft_strjoin(token->value, value);
-// 					free(token->value);
-// 					token->value = tmp;
-// 				}
-// 				// else
-// 				// {
-// 				// 	// If the variable is not found, include the original "${...}" in the result
-// 				// 	tmp = ft_strjoin(token->value, "${");
-// 				// 	tmp = ft_strjoin(tmp, new);
-// 				// 	tmp = ft_strjoin(tmp, "}");
-// 				// 	free(token->value);
-// 				// 	token->value = tmp;
-// 				// }
+//             char *var = ft_substr(str, j, i - j);
+//             char *value = get_env(env, var);
 
-// 				i++; // Skip '}'
-// 			}
-// 		}
-// 		i++;
-// 	}
-// 	return (token->value);
+//             if (value) {
+//                 expanded = ft_strjoin_realloc(expanded, value, &len);
+//             } else {
+//                 expanded = ft_strjoin_realloc(expanded, var, &len);
+//             }
+
+//             free(var);
+//         } else {
+//             expanded = ft_strjoin_realloc(expanded, &str[i], &len);
+//             i++;
+//         }
+//     }
+
+//     return expanded;
 // }
 
-//a function that expands the variables tha are in double quotes if it is expandable.
+char *expand_in_dq(char *str, t_env *env) {
+    char *expanded = ft_strdup(""); // Initialize to an empty string
+    size_t len = 0;
+    size_t i = 0;
+    size_t k = 0; // Initialize k to 0
+
+    while (str[i]) {
+        if (str[i] == '$' && ft_isalnum(str[i + 1])) {
+            i++;
+            size_t j = i;
+            while (str[i] && (ft_isalnum(str[i]) || str[i] == '_')) {
+                i++;
+            }
+
+            char *var = ft_substr(str, j, i - j);
+            char *value = get_env(env, var);
+
+            if (value) {
+                // Extract the part between k and j and append value with spaces
+                char *part = ft_substr(str, k, j - k - 1);
+                expanded = ft_strjoin_realloc(expanded, part, &len);
+                free(part);
+                expanded = ft_strjoin_realloc(expanded, value, &len);
+            } else {
+                // Append the entire substring
+                char *sub = ft_substr(str, k, i - k);
+                expanded = ft_strjoin_realloc(expanded, sub, &len);
+                free(sub);
+            }
+
+            free(var);
+            k = i; // Update k to the current position
+        } else if (str[i] == ' ') {
+            // Append the part between k and i (space) with spaces
+            char *part = ft_substr(str, k, i - k);
+            expanded = ft_strjoin_realloc(expanded, part, &len);
+            free(part);
+
+            // Check for consecutive spaces
+            while (str[i] == ' ') {
+                expanded = ft_strjoin_realloc(expanded, " ", &len);
+                i++;
+            }
+
+            k = i; // Update k to the current space position
+        }
+        i++;
+    }
+
+    // Append any remaining characters
+    if (k < i) {
+        char *remaining = ft_substr(str, k, i - k);
+        expanded = ft_strjoin_realloc(expanded, remaining, &len);
+        free(remaining);
+    }
+
+    return expanded;
+}
+
+void expand_dq(t_token *token, t_env *env) {
+    t_token *tmp = token;
+
+    while (tmp) {
+        if (tmp->type == DQUOTE) {
+            char *expanded_string = expand_in_dq(tmp->value, env);
+
+            if (expanded_string) {
+                free(tmp->value);
+                tmp->value = expanded_string;
+            }
+        }
+
+        tmp = tmp->next;
+    }
+}
+
+
+	// t_token	*tmp;
+	// char	*new_value;
+
+	// tmp = token;
+	// while (tmp)
+	// {
+	// 	if (tmp->type == DQUOTE && ft_strchr(tmp->value, '$') != NULL)
+	// 	{
+	// 		new_value = expand2(tmp->value, env, tmp);
+	// 		if (new_value)
+	// 			tmp->value = ft_strcpy(new_value);
+	// 	}
+	// 	tmp = tmp->next;
+	// }
 // void	expand_dq(t_token *token, t_env *env)
 // {
-// 	char	*new;
 // 	t_token	*tmp;
-// 	int		i;
 
-// 	i = 0;
 // 	tmp = token;
 // 	while (tmp)
 // 	{
 // 		if (tmp->type == DQUOTE)
 // 		{
-// 			if (ft_strcmp(&tmp->value[i], "\"") == 0 && ft_strcmp(&tmp->value[i + 1], "$") == 0)
+// 			// Use a temporary string to store the expanded value
+// 			char *new_value = expand(tmp->value, env, tmp);
+
+// 			// Check if the expansion was successful
+// 			if (new_value)
 // 			{
-// 				new = tmp->value;
-// 				new = ft_strtrim(new, "\"");
+// 				// Replace the token's value with the expanded value
 // 				free(tmp->value);
-// 				tmp->value = new;
-// 				tmp->value = expand(tmp->value, env, tmp);
-// 			}
-// 			else
-// 			{
-// 				new = tmp->value;
-// 				new = ft_strtrim(new, "\"");
-// 				free(tmp->value);
-// 				tmp->value = new;
+// 				tmp->value = new_value;
 // 			}
 // 		}
 // 		tmp = tmp->next;
 // 	}
 // }
-
-//if the token is a double quote, check if the next token is a variable, if it is, expand it.
-void	expand_dq(t_token *token, t_env *env)
-{
-	t_token	*tmp;
-	char	*new_value;
-
-	tmp = token;
-	while (tmp)
-	{
-		if (tmp->type == DQUOTE && ft_strchr(tmp->value, '$') != NULL)
-		{
-			new_value = expand(tmp->value, env, tmp);
-			if (new_value)
-				tmp->value = ft_strcpy(new_value);
-		}
-		tmp = tmp->next;
-	}
-}
+//we're gonna use ft_substr (create an array of strings that contains the value of the token split by spaces using substr and all of this is in a temporary variable) and then expand them if they are expandable and then join them again. we need to perserve the initial string though in case there were spaces in the end of the line or the beginning of the line.

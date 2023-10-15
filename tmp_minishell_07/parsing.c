@@ -6,7 +6,7 @@
 /*   By: aben-dhi <aben-dhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:46:48 by aben-dhi          #+#    #+#             */
-/*   Updated: 2023/10/10 16:27:10 by aben-dhi         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:19:03 by aben-dhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ t_token	*ft_tokenizer(char *str, t_env *env)
 			token = ft_semicolon(str, &i, token);
 			isbeginning = 1;
 		}
+		// else if (str[i] == '-')
+		// {
+		// 	token = ft_opt(str, &i, token);
+		// 	isbeginning = 0;
+		// }
 		else
 		{
 			if (isbeginning == 1)
@@ -138,26 +143,27 @@ int	ft_parse(char *line, t_env *env)
 		token = ft_tokenizer(line, env);
 		re_tokenize(token);
 		redir_type(token);
-		expand_dq(token, env);
+		// if (find_in_list(token, "$") == 0)
+			expand_dq(token, env);
 		lowerize_builtins(token);
 		if((check_args(token)) == 0)
 		{
 			printf("Syntax error\n");
 			return (1); // Return an error code
 		}
-		// int		i;
-		// t_token	*tmp;
-		// i = 0;
-		// tmp = token;
-		// while (tmp)
-		// {
-		// 	printf("token %d: %s\n", i, tmp->value);
-		// 	printf("token type: %s\n", tmp->type);
-		// // 	// if (i > 0 && tmp->prev != NULL) // Check if tmp->prev is not NULL
-		// // 	// 	printf("prev token %d: %s\n", i, tmp->prev->value);
-		// 	tmp = tmp->next;
-		// 	i++; 
-		// }
+		int		i;
+		t_token	*tmp;
+		i = 0;
+		tmp = token;
+		while (tmp)
+		{
+			printf("token %d: %s\n", i, tmp->value);
+			printf("token type: %s\n", tmp->type);
+		// 	// if (i > 0 && tmp->prev != NULL) // Check if tmp->prev is not NULL
+		// 	// 	printf("prev token %d: %s\n", i, tmp->prev->value);
+			tmp = tmp->next;
+			i++; 
+		}
 	}
 	else
 	{

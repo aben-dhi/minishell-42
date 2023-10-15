@@ -1,6 +1,6 @@
 NAME	= minishell
 
-SRCS	= minishell.c parsing.c syntax.c utils.c check_args.c redir_type.c redir_fcts.c tok_lex2.c \
+SRCS	= minishell.c parsing.c syntax.c utils.c check_args.c redir_type.c redir_fcts.c tok_lex2.c libft_utils/ft_realloc.c \
 			builtins/echo.c builtins/pwd.c builtins/cd.c builtins/env.c builtins/export.c builtins/unset.c builtins/exec_builtins.c\
 			libft_utils/ft_substr.c libft_utils/ft_lstadd_back.c libft_utils/ft_isalnum.c libft_utils/ft_strchr.c \
 			libft_utils/ft_strlen.c libft_utils/ft_lstlast.c libft_utils/ft_split.c libft_utils/ft_strcpy.c libft_utils/ft_strcmp.c \
